@@ -1,4 +1,4 @@
-#TP3 : Le jeu du pendu
+# TP3 : Le jeu du pendu
 
 Le but de ce TP est de créer un programme qui permette de jouer au jeu du Pendu, c’est-à-dire faire deviner un mot à l’utilisateur en lui permettant de proposer des lettres une à une, avec un nombre limité d’erreurs possibles.
 
