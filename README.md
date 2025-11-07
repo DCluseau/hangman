@@ -1,18 +1,16 @@
-# TP3 : Le jeu du pendu
+# The hangman game
 
-Le but de ce TP est de créer un programme qui permette de jouer au jeu du Pendu, c’est-à-dire faire deviner un mot à l’utilisateur en lui permettant de proposer des lettres une à une, avec un nombre limité d’erreurs possibles.
+The goal of this exercise is to create a program that allows a user to play Hangman, that is, to guess a word by allowing them to suggest letters one by one, with a limited number of possible errors.
+For this version, we consider the 10th error to result in a Game Over.
 
-Pour cette version, on considère que la 10ème erreur entraîne un Game Over.
+## First step
+You will use a predefined list of words of your choice; choose simple words that aren't too long. At the start of the game, a random word will be chosen (and the user must not know which one). Then, a number of dashes equal to the number of letters in the word will be displayed.
 
-## 1ère étape
-Vous utiliserez une liste prédéfinie de mots de votre choix, prenez des mots simples pas trop longs. Au lancement de la partie, un mot aléatoire sera choisi (et l’utilisateur ne doit pas savoir lequel). On affiche ensuite un nombre de tiret égal au nombre de lettres dans le mot.
+## Second step
+The user is asked to enter a letter. If the letter is in the word, it is revealed in its correct position(s) on our dashed display. If the entire word is revealed, the game is won.
+If the letter is not in the word, the user is informed of the number of errors remaining before Game Over. If 10 errors are reached, a message is displayed to warn the user, the word is revealed, and the program stops.
+This step must be repeated until the user finds the word, or until they lose.
 
-## 2ème étape 
-On demande à l’utilisateur d’entrer une lettre Si la lettre est dans le mot, on la révèle dans son ou ses emplacements dans notre affichage à tirets. Si le mot est révélé en entier, on gagne la partie.
-
-Si la lettre n’est pas dans le mot, on informe l’utilisateur du nombre d’erreurs restantes avant le Game Over. Si on arrive à 10 erreurs, on affiche un message pour prévenir l’utilisateur, on affiche le mot et on arrête le programme.
-Cette étape doit être répétée jusqu’à ce que l’utilisateur trouve le mot, ou jusqu’à ce qu’il perde.
-
-## 3ème étape
-Après avoir bien testé notre jeu, s’être assuré qu’il fonctionne avec des mots variés, qu’il est bien robuste, on peut l’améliorer :
-A chaque tour, afficher la liste des lettres déjà proposées par le joueur qui ne sont pas dans le mot.
+## Third step
+After thoroughly testing our game, ensuring it works with a variety of words, and confirming its robustness, we can improve it:
+On each turn, display the list of letters already suggested by the player that are not in the word.
