@@ -4,23 +4,31 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * 
+ * Main class
  */
 public class HangmanGame {
 	final static int nbErrorMax = 10;
 	static Scanner scan = new Scanner(System.in);
 	
 	/**
+	 * Constructor (empty)
+	 */
+	HangmanGame() {
+		
+	}
+	
+	/**
 	 * Function to create a list of the words to guess
+	 * @return wordLists
 	 */
 	public static String[] createWordList(){
-		String[] wordList = {"poutre", "pelle", "barbe", "trogne"};
+		String[] wordList = {"poutre", "pelle", "barbe", "trogne", "tractopelle", "covfefe", "abracadabra"};
 		return wordList;
 	}
 	
 	/**
 	 * Function to randomly choose a word from a list
-	 * @return
+	 * @return word
 	 */
 	public static String chooseWord() {
 		String[] wordList = createWordList();
@@ -33,8 +41,8 @@ public class HangmanGame {
 	
 	/**
 	 * Function to initialize the guess word
-	 * @param word
-	 * @return
+	 * @param word String
+	 * @return emptyWord
 	 */
 	public static String initEmptyWord(String word) {
 		String emptyWord= "";
@@ -46,10 +54,10 @@ public class HangmanGame {
 	
 	/**
 	 * Function to replace the underscores in the guess word with the guessed letter 
-	 * @param guessWord
-	 * @param letter
-	 * @param index
-	 * @return
+	 * @param guessWord String
+	 * @param letter String
+	 * @param index int
+	 * @return guessWord
 	 */
 	public static String updateGuessWord(String guessWord, String letter, int index) {
 		guessWord = guessWord.substring(0, index) + letter + guessWord.substring(index + 1);
@@ -58,9 +66,9 @@ public class HangmanGame {
 	
 	/**
 	 * Function to check if the given letter is in the word to guess
-	 * @param letter
-	 * @param word
-	 * @return
+	 * @param letter String
+	 * @param word String
+	 * @return boolean
 	 */
 	public static boolean checkLetter(String letter, String word) {
 		if(word.contains(letter)) {
@@ -71,9 +79,10 @@ public class HangmanGame {
 	
 	/**
 	 * Function to replace the underscores in the guess word with the guessed letter 
-	 * @param word
-	 * @param letter
-	 * @return
+	 * @param word String
+	 * @param guessWord String
+	 * @param letter String
+	 * @return guessWord
 	 */
 	public static String replaceChar(String word, String guessWord, String letter) {
 		int index = 0;
@@ -87,8 +96,8 @@ public class HangmanGame {
 	
 	/**
 	 * Function to test if the entire word has been found
-	 * @param guessWord
-	 * @return
+	 * @param guessWord String
+	 * @return boolean
 	 */
 	public static boolean checkWin(String guessWord) {
 		if(!guessWord.contains("_")) {
@@ -99,6 +108,7 @@ public class HangmanGame {
 	
 	/**
 	 * Function to ask a letter
+	 * @return letter
 	 */
 	public static String askLetter() {
 		String letter = "";
@@ -113,6 +123,7 @@ public class HangmanGame {
 	
 	/**
 	 * Function to display emptyWord
+	 * @param word String
 	 */
 	public static void displayGuess(String word) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 		System.out.println(word);
@@ -120,6 +131,9 @@ public class HangmanGame {
 	
 	/**
 	 * Function to count number of remaining letters
+	 * @param word String
+	 * @param letter String
+	 * @return count
 	 */
 	public static int countLetters(String word, String letter) {
 		int count = 0;
@@ -133,7 +147,7 @@ public class HangmanGame {
 	
 	/**
 	 * Main program 
-	 * @param args
+	 * @param args (empty)
 	 */
 	public static void main(String[] args) {
 		String wordToGuess = chooseWord();
@@ -155,16 +169,19 @@ public class HangmanGame {
 			if(letterTried.contains(letter)) {
 				tries++;
 				System.out.println("You have already tried this letter.");
+				System.out.println("You have " + (10 - tries) + " remaining tries.");
 			}else if(checkLetter(letter, wordToGuess)) {
+				//tries++;
+				letterTried += letter + " ";
 				emptyWord = replaceChar(wordToGuess, emptyWord, letter);
 			}else {
 				tries++;
 				System.out.println("Sorry, the letter " + letter + " is not in the word.");
 				letterTried += letter + " ";
+				System.out.println("You have " + (10 - tries) + " remaining tries.");
 			}
 			displayGuess(emptyWord);
 		}
-		System.out.println("Number of tries : " + tries);
 		if(checkWin(emptyWord)) {
 			System.out.println("You win !");
 		}else {
